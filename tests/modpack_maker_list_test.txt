@@ -1,0 +1,6 @@
+ Animations
+#https://www.moddb.com/addons/start/242286	0	 - ChadSTALKEREnjoyer	 RemadeAnimations	https://www.moddb.com/mods/stalker-anomaly/addons/new-walk-run-animation
+#https://www.moddb.com/addons/start/209819	0	 - Feel_Fried	 Food Drugs and Drinks Animations FDDA	https://www.moddb.com/mods/stalker-anomaly/addons/food-drug-and-drinks-animations-reuploaded
+#https://www.moddb.com/addons/start/211277	Lower_Weapon_Sprint_v1.2.0.3	 - Skieppy	 LowerSprintAnimaiton	https://www.moddb.com/mods/stalker-anomaly/addons/lowered-weapon-sprint-animation
+#https://www.moddb.com/addons/start/217738	Camera Reanimation Project - I.N.E.R.T.I.A. V1.2	 - IENCE	 Camera Reanimation INERTIA	https://www.moddb.com/mods/stalker-anomaly/addons/camera-reanimation-project-inertia
+https://www.moddb.com/addons/start/234040	Tool_tip_in_corner	 - RavenAscendant	 Tooltip in Corner	https://www.moddb.com/mods/stalker-anomaly/addons/tooltip-in-corner

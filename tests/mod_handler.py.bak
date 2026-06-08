@@ -1,0 +1,131 @@
+from mod import Mod
+
+
+def get_modlist(modlist_path) -> dict:
+    parsed_dict: dict = dict()
+
+    with open(modlist_path, "r") as modlist_file:
+        for line in modlist_file:
+            if (
+                line.startswith("#")
+                or "End" in line
+                or "separator" in line
+                or line.startswith("\n")
+            ):
+                continue
+
+            modlist_folder_name: str = line[1:]
+
+            splits: list = line[1:].split("-")
+
+            modlist_name: str = ""
+            modlist_number: int = None
+
+            if len(splits) == 1:
+                modlist_name = splits[0].strip()
+                modlist_number = 0
+            elif len(splits) == 4:
+                modlist_name = splits[1].strip() + " - " + splits[2].strip()
+                modlist_number = splits[0].strip()
+            else:
+                modlist_name = splits[1].strip()
+                modlist_number = splits[0].strip()
+
+            parsed_dict[modlist_name] = modlist_number
+
+    return parsed_dict
+
+
+def get_modpack_maker_list(modpack_maker_list_path, modlist: dict) -> list[Mod]:
+    parsed_list: list[Mod] = []
+    seen_ids: list[int] = []
+
+    mod_names: list = []
+
+    for name in modlist:
+        mod_names.append(name)
+
+    with open(modpack_maker_list_path, "r") as maker_file:
+        for line in maker_file:
+            if (
+                line.startswith(" ")
+                or line.startswith("#")
+                or line.startswith("https://github")
+            ):
+                continue
+
+            splits: list[str] = line.strip().split("\t")
+
+            url: str = splits[0].strip()
+
+            if "github" not in line:
+                mod_id: int = int(url.split("/")[-1])
+
+            author: str = splits[2].strip()
+
+            name: str = splits[3].strip()
+
+            if name not in mod_names:
+                # print(f"{name} not in modlist")
+                continue
+
+            if "github" in line:
+                print(f"Mod on Github: {name}")
+
+            # TODO I don't need the mod_manager_number
+            # save the modlist_folder_name instead
+            # mod_manager_number: int = modlist[name]
+
+            # mod_manager_number: int = modlist[name]
+
+            subfolders_string: str = splits[1].strip()
+            subfolders: list = list()
+
+            if ":" in subfolders_string:
+                subfolders = subfolders_string.split(":")
+            else:
+                subfolders.append(subfolders_string)
+
+            if (
+                name == "FDDA Immersive Sleep Patch"
+                or name == "Retrogue's Additional Weapons"
+            ):
+                # These mods don't have a url. Skip them
+                # TODO What to do with these and how to prevent future fails?
+                continue
+
+            mod_url: str = ""
+
+            try:
+                mod_url = splits[4].strip()
+            except Exception as error:
+                print(f"Mod {name} has no modpage URL.")
+                print(f"Original error: {error}")
+
+            if mod_id not in seen_ids:
+                new_mod: Mod = Mod(
+                    mod_id,
+                    url,
+                    subfolders,
+                    author,
+                    name,
+                    mod_url,
+                    mod_manager_number,
+                )
+                parsed_list.append(new_mod)
+
+                print(f"Adding new mod to list: {mod_manager_number} - {name} {author}")
+
+                seen_ids.append(mod_id)
+            else:
+                existing_mod: Mod = next(
+                    mod for mod in parsed_list if mod.mod_id == mod_id
+                )
+                for subfolder in subfolders:
+                    existing_mod.append_subfolder(subfolder)
+
+    return parsed_list
+
+
+def _create_github_mod():
+    return

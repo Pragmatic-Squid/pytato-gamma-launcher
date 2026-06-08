@@ -1,0 +1,7 @@
+dl_url	subfolder	author	mod_name	mod_url
+
+if subfolder == 0:
+	folder_name = mod_name
+else:
+	extracted_subfolder = extract_subfolder()
+	extracted_subfolder = mod_name

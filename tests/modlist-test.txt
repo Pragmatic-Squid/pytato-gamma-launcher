@@ -1,0 +1,9 @@
+# Test modlist
+
+-End
++G.A.M.M.A. End of List_separator
++38- Animations_separator
++39- RemadeAnimations - ChadSTALKEREnjoyer
++41- LowerSprintAnimaiton - Skieppy
++42- Camera Reanimation INERTIA - IENCE
+-252- Tooltip in Corner - RavenAscendant

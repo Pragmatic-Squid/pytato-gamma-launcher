@@ -51,7 +51,6 @@ for i, mod in enumerate(modpack_maker_list, start=1):
         raise ValueError(f"No filename returned for {mod}")
 
     # TODO folder_name is not correctly assigned
-    # I have no idea why the fuck that is...
 
     # print(f"[{i}/{len(modpack_maker_list)}] Installing {mod.name}")
     print("\t-> Installing...")
